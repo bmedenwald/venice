@@ -1,6 +1,4 @@
 module Venice
-  VERSION = "0.0.1"
-
   def self.shared_secret
     @@shared_secret
   end

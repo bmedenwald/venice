@@ -109,7 +109,8 @@ module Venice
         :app_item_id => @app_item_id,
         :version_external_identifier => @version_external_identifier,
         :bid => @bid,
-        :bvrs => @bvrs
+        :bvrs => @bvrs,
+        :expires_at => @expires_at
       }
     end
 

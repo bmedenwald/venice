@@ -38,9 +38,6 @@ module Venice
 
     def perform_post(params)
       response = Excon.post(@verification_url, :headers => headers, :body => params.to_json)
-
-      Rails.logger.info "PERFORM POST: #{response.body.inspect}"
-
       JSON.parse(response.body)
     end
 

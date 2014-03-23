@@ -75,6 +75,9 @@ module Venice
     # For auto-renewable subscriptions, returns the date the subscription will expire
     attr_reader :expires_at
 
+    # For an active subscription was renewed with transaction that took place after the receipt your server sent to the App Store, this is the latest receipt base64.
+    attr_accessor :latest_receipt
+
     def initialize(attributes = {})
       @quantity = Integer(attributes['quantity']) if attributes['quantity']
       @product_id = attributes['product_id']
@@ -136,6 +139,10 @@ module Venice
 
             if latest_receipt_attributes = json['latest_receipt_info']
               receipt.latest = Receipt.new(latest_receipt_attributes)
+            end
+
+            if latest_receipt_base64 = json['latest_receipt']
+              receipt.latest_receipt = latest_receipt_base64
             end
 
             if latest_expired_receipt_attributes = json['latest_expired_receipt_info']
